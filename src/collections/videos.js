@@ -2,7 +2,30 @@ var Videos = Backbone.Collection.extend({
 
   model: Video,
   
-  url: 'https://www.googleapis.com/youtube/v3/search'
+  url: 'https://www.googleapis.com/youtube/v3/search',
+  
+  parse: function(data) {
+    if (data.items === undefined) {
+      return data;
+    }
+    return data.items;
+  },
+  
+  search: function(string) {
+    console.log($('input').val());
+    let data = {
+      // url: 'https://www.googleapis.com/youtube/v3/search',
+      part: 'snippet',
+      type: 'video',
+      maxResults: 5,
+      videoEmbeddable: true,
+      key: window.YOUTUBE_API_KEY
+    };
+    if (string) {
+      data.q = string;
+    }
+    this.fetch({data: data});
+  }
   /*initialize: function(videoData) {
 
   }*/

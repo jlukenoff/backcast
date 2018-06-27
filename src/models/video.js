@@ -11,5 +11,4 @@ var Video = Backbone.Model.extend({
       el: $('.player')
     }).render();
   }
-
 });

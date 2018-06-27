@@ -5,6 +5,13 @@ var AppView = Backbone.View.extend({
   initialize: function(collection = exampleVideoData) {
     this.videos = new Videos(collection);
     this.render();
+    this.videos.on('sync', function() {
+      new VideoPlayerView({
+        collection: this.videos,
+        model: this.videos.at(0),
+        el: this.$('.player')
+      }).render(); 
+    }, this);
   },
 
   render: function() {
