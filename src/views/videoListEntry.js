@@ -1,5 +1,6 @@
 var VideoListEntryView = Backbone.View.extend({
   initialize: function() {
+    // should listen to click events and model.toggleSelected;
   },
   
   events: {
